@@ -88,11 +88,11 @@ A multimodal AI agent powered by [Liquid AI's LFM2-Audio-1.5B](https://huggingfa
     Check PyTorch official site
     Go to https://pytorch.org/get-started/locally/ and select:
 
-    PyTorch Build: Stable or Nightly
-    Your OS: Windows
-    Package: Pip
-    Language: Python
-    Compute Platform: CUDA 12.1 (or your version)
+    - PyTorch Build: Stable or Nightly
+    - Your OS: Windows
+    - Package: Pip
+    - Language: Python
+    - Compute Platform: CUDA 12.1 (or your version)
 
     It will give you the exact command.
 
@@ -133,3 +133,10 @@ Perfect for users without local GPU access:
 - ❌ No microphone recording
 - ❌ Session timeouts (need to re-run)
 - ❌ Limited to ~12 hours per session
+
+## ▶️ Usage
+
+Run the agent
+```bash
+python main.py  # Colab: !python main.py
+```
