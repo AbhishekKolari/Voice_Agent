@@ -50,8 +50,17 @@ class LiquidAudioLLM(LLM):
         self.processor = LFM2AudioProcessor.from_pretrained(Config.HF_REPO).eval()
         self.model = LFM2AudioModel.from_pretrained(Config.HF_REPO).eval()
         
+        # Only move to CUDA if explicitly using cuda AND it's available
         if self.device == "cuda":
-            self.model = self.model.cuda()
+            try:
+                self.model = self.model.cuda()
+                print("Model successfully loaded on GPU")
+            except Exception as e:
+                print(f"Warning: Failed to load model on GPU: {e}")
+                print("Falling back to CPU")
+                self.device = "cpu"
+        else:
+            print("Model loaded on CPU")
         
         # Initialize chat state for multi-turn conversations
         self.chat_state = ChatState(self.processor)
@@ -99,12 +108,13 @@ class LiquidAudioLLM(LLM):
         modality_out = []
         
         # Use generate_interleaved for multi-turn conversation
+        # Note: generate_interleaved only supports audio_temperature and audio_top_k
         with torch.no_grad():
             for t in self.model.generate_interleaved(
                 **self.chat_state,
                 max_new_tokens=Config.MAX_NEW_TOKENS,
-                temperature=Config.TEXT_TEMPERATURE,
-                top_p=Config.TEXT_TOP_P
+                audio_temperature=Config.AUDIO_TEMPERATURE,
+                audio_top_k=Config.AUDIO_TOP_K
             ):
                 if t.numel() == 1:
                     text_out.append(t)
@@ -160,12 +170,14 @@ class LiquidAudioLLM(LLM):
         temp_chat.new_turn("assistant")
         
         # Use generate_sequential for single audio-to-text task
+        # generate_sequential also uses audio_temperature and audio_top_k
         text_out = []
         with torch.no_grad():
             for t in self.model.generate_sequential(
                 **temp_chat,
                 max_new_tokens=Config.MAX_NEW_TOKENS,
-                temperature=Config.TEXT_TEMPERATURE
+                audio_temperature=Config.AUDIO_TEMPERATURE,
+                audio_top_k=Config.AUDIO_TOP_K
             ):
                 if t.numel() == 1:
                     text_out.append(t)
