@@ -1,4 +1,4 @@
-<h1 align="center"> 🎙️ Voice Dictation Agent </h1>
+<h1 align="center"> 🎙️ Voice Agent </h1>
 
 <div align="center">
 
