@@ -14,21 +14,20 @@ try:
     processor = LFM2AudioProcessor.from_pretrained("LiquidAI/LFM2-Audio-1.5B").eval()
     print("✓ Processor loaded")
     
-    # print("Loading model...")
-    # model = LFM2AudioModel.from_pretrained("LiquidAI/LFM2-Audio-1.5B", dtype=torch.float16, 
-    #     device="cuda")
-    torch.cuda.empty_cache()
-    # print("✓ Model loaded")
-    model = LFM2AudioModel.from_pretrained(
-        "LiquidAI/LFM2-Audio-1.5B", 
-        device="cpu"  # Use the supported 'device' argument
-    )
-    print("✓ Model loaded onto CPU.")
+    print("Loading model...")
+    model = LFM2AudioModel.from_pretrained("LiquidAI/LFM2-Audio-1.5B").eval()
+    # torch.cuda.empty_cache()
+    print("✓ Model loaded")
+    # model = LFM2AudioModel.from_pretrained(
+    #     "LiquidAI/LFM2-Audio-1.5B", 
+    #     device="cpu"  # Use the supported 'device' argument
+    # )
+    # print("✓ Model loaded onto CPU.")
     
-    # 2. Manually convert to FP16 and move to GPU
-    # This halves the memory footprint for the VRAM transfer.
-    model = model.half().to('cuda') 
-    print("✓ Model successfully moved to GPU in FP16.")
+    # # 2. Manually convert to FP16 and move to GPU
+    # # This halves the memory footprint for the VRAM transfer.
+    # model = model.half().to('cuda') 
+    # print("✓ Model successfully moved to GPU in FP16.")
     
 except Exception as e:
     print(f"✗ Error: {e}")
