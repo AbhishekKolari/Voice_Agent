@@ -8,49 +8,49 @@ A multimodal AI agent powered by [Liquid AI's LFM2-Audio-1.5B](https://huggingfa
 
 ## 🌟 Features
 
-    ### Core Capabilities
+### Core Capabilities
 
-    - **🎤 Pure ASR (Automatic Speech Recognition)**: High-quality audio transcription using Liquid AI's foundation model
-    - **🔊 Pure TTS (Text-to-Speech)**: Natural voice synthesis with customizable voice characteristics
-    - **💬 Multi-turn Conversations**: Context-aware dialogue with conversation history
-    - **🎵 Audio-to-Audio Conversations**: Direct audio input with audio response generation
-    - **🧠 Semantic Memory**: FAISS vector store for searching past conversations
-    - **🔗 LangChain Integration**: Extensible tool-based architecture
+- **🎤 Pure ASR (Automatic Speech Recognition)**: High-quality audio transcription using Liquid AI's foundation model
+- **🔊 Pure TTS (Text-to-Speech)**: Natural voice synthesis with customizable voice characteristics
+- **💬 Multi-turn Conversations**: Context-aware dialogue with conversation history
+- **🎵 Audio-to-Audio Conversations**: Direct audio input with audio response generation
+- **🧠 Semantic Memory**: FAISS vector store for searching past conversations
+- **🔗 LangChain Integration**: Extensible tool-based architecture
 
-    ### Technical Features
+### Technical Features
 
-    - **Three Generation Modes**:
-    - `generate_sequential`: For single-turn ASR and TTS
-    - `generate_interleaved`: For multi-turn multimodal conversations
-    - **Memory Management**: Dual-tier memory (FAISS + conversation buffer)
-    - **Automatic State Management**: Prevents conversation state corruption
-    - **Error Recovery**: Graceful handling of CUDA errors and generation failures
+- **Three Generation Modes**:
+- `generate_sequential`: For single-turn ASR and TTS
+- `generate_interleaved`: For multi-turn multimodal conversations
+- **Memory Management**: Dual-tier memory (FAISS + conversation buffer)
+- **Automatic State Management**: Prevents conversation state corruption
+- **Error Recovery**: Graceful handling of CUDA errors and generation failures
 
 ## 💻 System Requirements
 
-    ### Minimum Requirements
+### Minimum Requirements
 
-    | Component | Requirement |
-    |-----------|-------------|
-    | **Python** | 3.9 or higher |
-    | **GPU** | NVIDIA GPU with 8GB+ VRAM (CUDA-capable) |
-    | **RAM** | 16GB+ |
-    | **Storage** | 5GB+ (for model weights) |
-    | **CUDA** | 11.8 or 12.1+ |
-    | **PyTorch** | 2.8.0 or higher |
+| Component | Requirement |
+|-----------|-------------|
+| **Python** | 3.9 or higher |
+| **GPU** | NVIDIA GPU with 8GB+ VRAM (CUDA-capable) |
+| **RAM** | 16GB+ |
+| **Storage** | 5GB+ (for model weights) |
+| **CUDA** | 11.8 or 12.1+ |
+| **PyTorch** | 2.8.0 or higher |
 
-    ### Recommended Setup
+### Recommended Setup
 
-    - **GPU**: NVIDIA RTX 3090/4090 or A100
-    - **RAM**: 32GB+
-    - **VRAM**: 16GB+
+- **GPU**: NVIDIA RTX 3090/4090 or A100
+- **RAM**: 32GB+
+- **VRAM**: 16GB+
 
-    ### ⚠️ Important Notes
+### ⚠️ Important Notes
 
-    - **CPU-only mode is NOT supported** by the Liquid AI model
-    - The model requires significant GPU memory (~3GB for model weights + additional for inference)
-    - Generation can be slow on consumer GPUs (5-30 seconds per response)
-    - **Running locally may cause OOM errors** on GPUs with <8GB VRAM
+- **CPU-only mode is NOT supported** by the Liquid AI model
+- The model requires significant GPU memory (~3GB for model weights + additional for inference)
+- Generation can be slow on consumer GPUs (5-30 seconds per response)
+- **Running locally may cause OOM errors** on GPUs with <8GB VRAM
 
 ## 🚀 Installation
 
@@ -104,39 +104,40 @@ A multimodal AI agent powered by [Liquid AI's LFM2-Audio-1.5B](https://huggingfa
 
 ### Option 2: Google Colab (Recommended for Testing)
 
-    Perfect for users without local GPU access:
+Perfect for users without local GPU access:
 
-    ```python
-    # In a Colab notebook
-    !git clone https://github.com/AbhishekKolari/Voice_Agent.git
-    %cd Voice_Agent
+```python
+# In a Colab notebook
+!git clone https://github.com/AbhishekKolari/Voice_Agent.git
+%cd Voice_Agent
 
-    # Install dependencies
-    !pip install -r requirements/base.txt
+# Install dependencies
+!pip install -r requirements/base.txt
 
-    # Install Port_audio
-    !apt install libportaudio2
+# Install Port_audio
+!apt install libportaudio2
 
-    # Test loading model
-    !python liquid_llm.py
+# Test loading model
+!python liquid_llm.py
 
-    # Run the agent
-    !python main.py
-    ```
+# Run the agent
+!python main.py
+```
 
-    **Colab Advantages**:
-    - ✅ Free GPU access (T4/V100)
-    - ✅ No local setup required
-    - ✅ Pre-installed CUDA environment
+**Colab Advantages**:
+- ✅ Free GPU access (T4/V100)
+- ✅ No local setup required
+- ✅ Pre-installed CUDA environment
 
-    **Colab Limitations**:
-    - ❌ No microphone recording
-    - ❌ Session timeouts (need to re-run)
-    - ❌ Limited to ~12 hours per session
+**Colab Limitations**:
+- ❌ No microphone recording
+- ❌ Session timeouts (need to re-run)
+- ❌ Limited to ~12 hours per session
 
 ## ▶️ Usage
 
-    Run the agent
-    ```bash
-    python main.py  # Colab: !python main.py
-    ```
+Run the agent
+
+```bash
+python main.py  # Colab: !python main.py
+```
