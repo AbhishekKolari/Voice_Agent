@@ -2,8 +2,8 @@
 liquid-audio
 
 # PyTorch and Audio (CPU version - change to torch with CUDA if you have GPU)
-torch>=2.0.0
-torchaudio>=2.0.0
+# torch>=2.0.0
+# torchaudio>=2.0.0
 
 # LangChain
 langchain>=0.1.0
